@@ -80,6 +80,8 @@ def main():
         stop_server()
     elif args.restart:
         restart_server()
+    elif args.view:
+        open_console()
     elif args.deamon:
         deamon_keep_server_up()
 
