@@ -2,9 +2,11 @@
 Description=keeps minecraft server up
 
 [Service]
+Type=forking
 User=root
 WorkingDirectory=/root/minecraft-server/
-ExecStart=mc-server.py -d
+EnvironmentFile=/etc/.argconf
+ExecStart=/usr/bin/python3 mc-server.py -d
 Restart=always
 RestartSec=30
 
