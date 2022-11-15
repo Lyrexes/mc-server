@@ -1,0 +1,12 @@
+[Unit]
+Description=keeps minecraft server up
+
+[Service]
+User=root
+WorkingDirectory=/root/minecraft-server/
+ExecStart=mc-server.py -d
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
