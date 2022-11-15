@@ -6,7 +6,7 @@ import argparse
 SERVER  = libtmux.Server()
 SESSION_NAME = "minecraft"
 SERVER_JAR = "paper.jar"
-RAM_IN_GB = 2
+RAM_IN_GB = 14
 
 def get_window():
     return get_session().windows[0]
@@ -26,7 +26,7 @@ def send_input(cmd: str):
 def start_server():
     try:
         SERVER.new_session(SESSION_NAME, attach=False, 
-        window_command=f"java -Xms{RAM_IN_GB}G -Xmx{RAM_IN_GB}G -jar {SERVER_JAR} --nogui")
+            window_command=f"java -Xms{RAM_IN_GB}G -Xmx{RAM_IN_GB}G -jar {SERVER_JAR} --nogui")
     except:
         print("could not start server")
 
@@ -51,7 +51,7 @@ def open_console():
         print(f"could not attach to session: {SESSION_NAME}")
 
 def deamon_keep_server_up():
-    if not has_session(SESSION_NAME):
+    if not SERVER.has_session(SESSION_NAME):
         start_server()
 
 def parse_arguments():
@@ -66,6 +66,8 @@ def parse_arguments():
      help="quits server")
     parser.add_argument('-s', '--start', action='store_true',
      help="starts server")
+    parser.add_argument('v', '--view', action='store_true',
+     help="view console")
     parser.add_argument('-d', '--deamon', action='store_true',
      help="deamon to keep server up if it crashes")
     return parser.parse_args()
